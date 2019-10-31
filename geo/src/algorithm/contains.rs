@@ -2,7 +2,8 @@ use num_traits::Float;
 
 use crate::algorithm::intersects::Intersects;
 use crate::{
-    Coordinate, CoordinateType, Line, LineString, MultiPolygon, Point, Polygon, Rect, Triangle,
+    Coordinate, CoordinateType, Geometry, Line, LineString, MultiPolygon, Point, Polygon, Rect,
+    Triangle,
 };
 
 ///  Checks if the geometry A is completely inside the B geometry
@@ -32,6 +33,41 @@ pub trait Contains<Rhs = Self> {
     fn contains(&self, rhs: &Rhs) -> bool;
 }
 
+/* impl<T> Contains<Geometry<T>> for Geometry<T>
+where
+    T: Float,
+{
+    fn contains(&self, g: &Geometry<T>) -> bool {
+        match self {
+            Geometry::Point(self_point) => match g {
+                Geometry::Point(other_point) => self_point.contains(other_point),
+                //... handle all N match cases for other geometry
+                _ => false,
+            },
+            // ... handle all N match cases for self geometry
+            _ => true,
+        }
+    }
+} */
+
+/* impl<T> Contains<Geometry<T>> for Geometry<T>
+where
+    T: CoordinateType,
+{
+    fn contains(&self, g: &Geometry<T>) -> bool {
+        match self {
+            Geometry::Point(self_point) => match g {
+                Geometry::Point(other_point) => self_point.contains(other_point),
+                // Geometry::Rect(other_rect) => self_point.contains(other_rect),
+                //... handle all N match cases for other geometry
+                _ => false,
+            },
+            // ... handle all N match cases for self geometry
+            _ => true,
+        }
+    }
+}
+ */
 impl<T> Contains<Point<T>> for Point<T>
 where
     T: Float,

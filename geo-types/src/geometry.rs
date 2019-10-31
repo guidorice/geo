@@ -1,6 +1,6 @@
 use crate::{
     CoordinateType, GeometryCollection, Line, LineString, MultiLineString, MultiPoint,
-    MultiPolygon, Point, Polygon,
+    MultiPolygon, Point, Polygon, Rect,
 };
 use std::hash::{Hash, Hasher};
 
