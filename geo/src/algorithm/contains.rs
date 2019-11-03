@@ -1,4 +1,5 @@
 use num_traits::Float;
+use std::ops::Neg;
 
 use crate::algorithm::intersects::Intersects;
 use crate::{
@@ -33,9 +34,9 @@ pub trait Contains<Rhs = Self> {
     fn contains(&self, rhs: &Rhs) -> bool;
 }
 
-/* impl<T> Contains<Geometry<T>> for Geometry<T>
+impl<T> Contains<Geometry<T>> for Geometry<T>
 where
-    T: Float,
+    T: CoordinateType,
 {
     fn contains(&self, g: &Geometry<T>) -> bool {
         match self {
@@ -48,7 +49,7 @@ where
             _ => true,
         }
     }
-} */
+}
 
 /* impl<T> Contains<Geometry<T>> for Geometry<T>
 where
